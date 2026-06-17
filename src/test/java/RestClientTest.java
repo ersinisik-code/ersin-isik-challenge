@@ -15,7 +15,7 @@ public class RestClientTest {
     @Test
     public void testReqresApiAvailability() {
         try {
-            // Reqres API'sinin ayakta olup olmadigini direkt test ediyoruz
+           
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://reqres.in/api/users?page=1"))
@@ -24,10 +24,8 @@ public class RestClientTest {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // API 200 OK donuyor mu?
             assertEquals(200, response.statusCode(), "API status code should be 200");
             
-            // Donen cevabin icinde data var mi?
             assertTrue(response.body().contains("data"), "Response should contain data field");
             
         } catch (Exception e) {
