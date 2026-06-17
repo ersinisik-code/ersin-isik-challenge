@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  challenge-app:
+    build: .
+    container_name: camunda_challenge_container
+    volumes:
+      - ./output:/app/output
+    environment:
+      - API_KEY=free_user_3FG6btMYzzVT9Ay65J9jMuKNf6D
