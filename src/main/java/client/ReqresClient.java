@@ -21,6 +21,7 @@ public class ReqresClient {
     public ReqresClient() {
         this.httpClient = HttpClient.newHttpClient();
         this.mapper = new ObjectMapper();
+        this.mapper.configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public List<User> fetchAllUsers() {
@@ -33,10 +34,11 @@ public class ReqresClient {
         try {
 
             do {
-
+                String apiKey = System.getenv("API_KEY");
                 HttpRequest request =
                         HttpRequest.newBuilder()
                                 .uri(URI.create(BASE_URL + page))
+                                .header("x-api-key", apiKey)
                                 .GET()
                                 .build();
 
